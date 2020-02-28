@@ -10,9 +10,10 @@ const app = dva(
 
 // 3. Model
 // app.model(require('./models/example').default);
-app.model(require('./models/product').default)
+// app.model(require('./models/product').default)
 // 4. Router
-app.router(require('./router').default);
+app.router(require('./routerConfig/index').default);
 
 // 5. Start
 app.start('#root');
+export default app
