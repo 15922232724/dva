@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!-- <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet"> -->
+    <script>
+      // Polyfills IE 10
+      if (Function('/*@cc_on return document.documentMode===10@*/')()){
+        document.write('<script src="./polyfill/ie10.js"><\/script>');
+      }
+    </script>
+    <style>
+    #allloading {
+      display:flex;
+      justify-content:center;
+      flex-direction: column;
+      align-items:center;
+      background: #fafafa;
+      position: absolute;
+      width:100%;
+      height:100%;
+      z-index:100;
+      left:0;
+      top:0;
+      padding:0;
+    }
+    #allloadingtext{
+      opacity:0.8;
+      color:#1890ff;
+      margin:24px;
+      font-size:20px:
+    }
+    .pswp__preloader__icn {
+      left: 0; right: 0; top: 0; bottom: 0;
+      opacity:0.95;
+      width: 80px;
+      height: 80px;
+      -webkit-animation: clockwise 1000ms linear infinite;
+      animation: clockwise 1000ms linear infinite;
+    }
+    
+    /* The idea of animating inner circle is based on Polymer loading indicator by Keanu Lee https://blog.keanulee.com/2014/10/20/the-tale-of-three-spinners.html */
+    .pswp__preloader__cut {
+      position: relative;
+      width: 40px;
+      height: 80px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    .pswp__preloader__donut {
+      box-sizing: border-box;
+      width: 80px;
+      height: 80px;
+      border: 4px solid #1890ff;
+      border-radius: 50%;
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: none;
+      margin:0;
+      -webkit-animation: donut-rotate 2000ms cubic-bezier(.4,0,.22,1) infinite;
+      animation: donut-rotate 2000ms cubic-bezier(.4,0,.22,1) infinite;
+    }
+    
+    @-webkit-keyframes clockwise {
+      0% { -webkit-transform: rotate(0deg) }
+      100% { -webkit-transform: rotate(360deg) }
+    }
+    @keyframes clockwise {
+      0% { transform: rotate(0deg) }
+      100% { transform: rotate(360deg) }
+    }
+    @-webkit-keyframes donut-rotate {
+      0% { -webkit-transform: rotate(0) }
+      50% { -webkit-transform: rotate(-140deg) }
+      100% { -webkit-transform: rotate(0) }
+    }
+    @keyframes donut-rotate {
+      0% { transform: rotate(0) }
+      50% { transform: rotate(-140deg) }
+      100% { transform: rotate(0) }
+    }
+    </style>
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <div id="allloading">
+      <div class="pswp__preloader__icn">
+        <div class="pswp__preloader__cut">
+          <div class="pswp__preloader__donut">
+          </div>
+        </div>
+      </div>
+    <div id="allloadingtext">加载中...</div>
+    </div>
+  
+    <!-- 
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
