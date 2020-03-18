@@ -12,6 +12,13 @@ const FormItem = Form.Item;
   activeInfo: global.activeInfo
 }))
 class Login extends Component {
+  constructor (props) {
+    super(props)
+    props.dispatch({
+      type: 'global/activeInfoInit'
+    });
+
+  }
   handleSubmit = e => {
     const { form, dispatch } = this.props;
     e.preventDefault();
@@ -24,11 +31,10 @@ class Login extends Component {
       }
     });
   };
-
   render () {
     const { loading, form, activeInfo } = this.props;
     const { getFieldDecorator } = form;
-
+    console.log(activeInfo)
 
     return (
       <Layout className="full-layout login-page">

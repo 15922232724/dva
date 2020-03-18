@@ -54,6 +54,20 @@ export default modelEnhance({
       }
 
     },
+    *activeInfoInit ({ }, { call, put }) {
+      let activeInfo = {
+        headerImg: headerImg,
+        name: '东北展会',
+        startTime: '2012',
+        endTime: '2013',
+
+        place: '沈阳'
+      }
+      yield put({
+        type: 'getActiveInfo',
+        payload: activeInfo
+      })
+    }
 
   },
 
@@ -64,6 +78,14 @@ export default modelEnhance({
         flatMenu: getFlatMenu(payload),
       };
     },
+    getActiveInfo (state, { payload }) {
+
+      return {
+        ...state, ...{
+          activeInfo: payload
+        }
+      }
+    }
   },
 });
 

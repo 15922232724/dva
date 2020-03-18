@@ -16,7 +16,11 @@ import _ from 'lodash';
 import { columns } from './config'
 const FormItem = Form.Item
 
-@connect(({ }) => ({
+@connect(({
+  global
+}) => ({
+  activeInfo: global.activeInfo
+
 }))
 class Active extends BaseComponent {
   state = {
@@ -33,7 +37,8 @@ class Active extends BaseComponent {
   }
 
   render () {
-
+    const { activeInfo } = this.props
+    console.log(activeInfo)
     return (
       <Layout className="full-layout home-page" >
         <div style={{ marginTop: '50px' }}>
