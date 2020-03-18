@@ -15,8 +15,8 @@ export default {
   /**
    * HTML的title模板
    */
-  htmlTitle: 'DBAdmin - {title}',
-  
+  htmlTitle: '展会信息 - {title}',
+
   /**
    * 系统通知
    */
@@ -42,17 +42,17 @@ export default {
     afterResponse: response => {
 
       // if (status) {
-        return response;
+      return response;
       // } else {
       //   throw new Error(message);
       // }
     },
     errorHandle: err => {
       // 请求错误全局拦截
-      const {dispatch} = storeIndex
+      const { dispatch } = storeIndex
       if (err.name === 'RequestError') {
-        if(err.code === 401){
-          notice.error(err.text );
+        if (err.code === 401) {
+          notice.error(err.text);
           dispatch(routerRedux.replace('/sign/login'));
           return;
         }
@@ -65,11 +65,11 @@ export default {
   exception: {
     global: (err, dispatch) => {
       const errName = err.name;
-    
+
       // RequestError为拦截请求异常
       if (errName === 'RequestError') {
         // notice.error(err.message);
-        console.error(err); 
+        console.error(err);
       } else {
         console.error(err);
       }
@@ -85,7 +85,7 @@ export default {
       let clearFilter = _.omitBy(filters, _.isNil)
 
       return {
-        page: pageNum-1,
+        page: pageNum - 1,
         size: pageSize,
         sortMap: sorts,
         ...clearFilter

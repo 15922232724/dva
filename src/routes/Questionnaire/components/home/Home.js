@@ -1,52 +1,25 @@
 import React from 'react';
-import { connect } from 'dva';
-import { Layout, Button, PageHeader, Checkbox,Input } from 'antd';
-import BaseComponent from 'components/BaseComponent';
-import cx from 'classnames';
-import Icon from 'components/Icon';
-import DataTable from 'components/DataTable';
-import { Link } from 'dva/router';
+import EC from 'components/Charts/ECharts/EC';
+import 'echarts/lib/chart/pie';
+import 'echarts/lib/component/tooltip';
+import 'echarts/lib/component/title';
+import Chart from './detail/chart'
+import Item from 'antd/lib/list/Item';
+import config from './config'
+export default class Events extends React.PureComponent {
 
-import * as action from '../../action/Action'
 
-import './Home.less';
-import _ from 'lodash';
+  render () {
+    const renders = config.map((item, index) => {
+      return <div key={index} >
+        <Chart name={1}>{item}</Chart>
+      </div>
+    })
 
-const { Content, Header, Footer } = Layout;
-// const Pagination = DataTable.Pagination;
-
-const pathBase = 'area';
-const namespace = 'area';
-const nameTitle = '系统参数';
-const idKey = 'code';
-const MAX_HIGHT = 400;
-const DEFAULT_FROM_FONT_SIZE = 26;
-/**
- * 角色列表
- */
-@connect(({ area, loading }) => ({
-  area,
-  loading: loading.effects[`${namespace}/getList`],
-}))
-export default class extends BaseComponent {
-  state = {
-
-  };
-  constructor(props){
-    super(props);
-  }
-  componentDidMount() {
-    const { dispatch } = this.props;
-  }
-
-  render() {
-    const { loading, history } = this.props;
-    const model = this.props[namespace];
- 
     return (
-      <Layout className="full-layout home-page">
-          <h1>DEMO</h1>
-      </Layout>
+      <div style={{ display: 'flex', flex: '1', marginTop: '100px' }}>
+        {renders}
+      </div>
     );
   }
 }
