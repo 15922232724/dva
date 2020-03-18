@@ -1,86 +1,73 @@
 import React from 'react';
-import EC from 'components/Charts/ECharts/EC';
-import 'echarts/lib/chart/pie';
-import 'echarts/lib/component/tooltip';
-import 'echarts/lib/component/title';
+import G2 from 'components/Charts/G2';
+import DataSet from '@antv/data-set';
+const { Chart, Axis, Geom, Tooltip, Legend, Coord, Label } = G2;
+const { DataView } = DataSet;
 
-export default class Chart extends React.PureComponent {
-  constructor (props) {
-    super(props);
-    this.state = {
-      cnt: 0
-    };
-  }
-  getOption = (config) => ({
-    title: {
-      text: config.title,
-      subtext: '纯属虚构',
-      x: 'center'
-    },
-    tooltip: {
-      trigger: 'item',
-      formatter: '{a} <br/>{b} : {c} ({d}%)'
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'left',
-      data: config.legend
-    },
-    series: [
-      {
-        name: '访问来源',
-        type: 'pie',
-        radius: '60%',
-        center: ['50%', '50%'],
-        data: config.data,
-        itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      }
-    ]
+export default props => {
+  let config = props.children
+  const { DataView } = DataSet;
+  const data = config.data
+  const dv = new DataView();
+  dv.source(data).transform({
+    type: 'percent',
+    field: 'count',
+    dimension: 'item',
+    as: 'percent'
   });
-
-  onChartClick = (param, echarts) => {
-    console.log(param, echarts);
-    alert('chart click');
-    this.setState({
-      cnt: this.state.cnt + 1
-    });
+  const cols = {
+    percent: {
+      formatter: val => {
+        val = val * 100 + '%';
+        return val;
+      }
+    }
   };
+  return (
 
-  onChartLegendselectchanged = (param, echart) => {
-    console.log(param, echart);
-    alert('chart legendselectchanged');
-  };
-
-  onChartReady = echarts => {
-    console.log('echart is ready', echarts);
-  };
-
-  render () {
-    const config = this.props.children
-    config.legend = []
-    config.data.map(item => {
-      config.legend.push(item.name)
-    })
-    let onEvents = {
-      click: this.onChartClick,
-      legendselectchanged: this.onChartLegendselectchanged
-    };
-
-    return (
-      <div style={{ width: '450px', height: '300px' }}>
-        <EC
-          option={this.getOption(config)}
-          onChartReady={this.onChartReady}
-          onEvents={onEvents}
+    <div style={{ width: '400px', height: '400px', textAlign: 'center' }}>
+      <p>{config.title}</p>
+      <Chart
+        data={dv}
+        scale={cols}
+        forceFit
+      >
+        <Coord type="theta" radius={0.6} />
+        <Axis name="percent" />
+        <Legend
+          position="right"
+          offsetY={0}
+          offsetX={-80}
         />
-
-      </div>
-    );
-  }
+        <Tooltip
+          showTitle={false}
+          itemTpl="<li><span style=&quot;background-color:{color};&quot; class=&quot;g2-tooltip-marker&quot;></span>{name}: {value}</li>"
+        />
+        <Geom
+          type="intervalStack"
+          position="percent"
+          color="item"
+          tooltip={[
+            'item*percent',
+            (item, percent) => {
+              percent = percent * 100 + '%';
+              return {
+                name: item,
+                value: percent
+              };
+            }
+          ]}
+          style={{ lineWidth: 1, stroke: '#fff' }}
+        >
+          <Label
+            content="percent"
+            formatter={(val, item) => {
+              return item.point.item;
+            }}
+          />
+        </Geom>
+      </Chart>
+    </div>
+  )
 }
+

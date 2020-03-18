@@ -40,10 +40,10 @@ export default props => (
       offsetY={0}
       offsetX={-100}
     />
-    <Tooltip
+    {/* <Tooltip
       showTitle={false}
       itemTpl="<li><span style=&quot;background-color:{color};&quot; class=&quot;g2-tooltip-marker&quot;></span>{name}: {value}</li>"
-    />
+    /> */}
     <Geom
       type="intervalStack"
       position="percent"
@@ -54,7 +54,6 @@ export default props => (
           percent = percent * 100 + '%';
           return {
             name: item,
-            value: percent
           };
         }
       ]}
