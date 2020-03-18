@@ -18,7 +18,7 @@ export default modelEnhance({
       {
         name: '调查问卷',
         icon: 'dashboard',
-        path: '/admin/question',
+        path: '/admin/qusetion',
       },
       // {
       //   name: '观众管理',

@@ -71,8 +71,9 @@ const routesConfig = app => [
     indexRoute: '/admin/home',
     component: BasicLayout,
     childRoutes: [
-      ActiveInfo(app),
-      Questionnaire(app)
+      Questionnaire(app),
+
+      ActiveInfo(app)
 
     ]
   },
