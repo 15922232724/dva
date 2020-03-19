@@ -5,49 +5,60 @@
 // SearchBar styles
 // -----------------------------
 .@{searchbar-prefix-cls} {
-  .form-inline{
+  .form-inline {
     position: relative;
     display: table;
     border-collapse: separate;
     border-spacing: 0;
     line-height: 1;
-    .row-item{
+
+    .row-item {
       display: table-cell;
       position: relative;
-      .col-item{
+
+      .col-item {
         float: left;
         margin-bottom: 0;
         position: relative;
-        &:hover{
+
+        &:hover {
           z-index: 2;
         }
-        .ant-input, 
+
+        .ant-input,
         .ant-select-selection {
-          &:focus, &:active{
+
+          &:focus,
+          &:active {
             z-index: 2;
           }
-        } 
+        }
+
         .ant-input-number-focused {
           z-index: 2;
         }
-        .ant-select-open .ant-select-selection{
+
+        .ant-select-open .ant-select-selection {
           z-index: 2;
         }
+
         .ant-cascader-picker:focus .ant-cascader-input {
           z-index: 2;
         }
+
         .ant-input-number {
           margin: 0;
         }
       }
+
       .col-item:first-child .ant-input,
       .col-item:first-child .ant-select .ant-select-selection,
       .col-item:first-child .ant-calendar-picker .ant-input,
-      .col-item:first-child .ant-input-number{
+      .col-item:first-child .ant-input-number {
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
       }
-      
+
       .col-item:not(:first-child) .ant-input,
       .col-item:not(:first-child) .ant-select .ant-select-selection,
       .col-item:not(:first-child) .ant-calendar-picker .ant-input,
@@ -59,43 +70,52 @@
         margin-left: -1px;
       }
     }
-    .search-btns{
-      float: left;
+
+    .search-btns {
+      float: right;
       margin-bottom: 0;
-      position: relative;
+      position: absolute;
       display: table-cell;
       margin-left: -1px;
-      button{
+
+      button {
         padding-left: 8px;
         padding-right: 8px;
         font-size: 14px;
-        > span {
+
+        >span {
           display: none;
         }
       }
-      button:first-child{
+
+      button:first-child {
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
       }
     }
   }
-  .form-grid{
-    .row-item{
-      .col-item{
+
+  .form-grid {
+    .row-item {
+      .col-item {
         .ant-calendar-picker {
           width: 100% !important;
         }
+
         .ant-input-number {
           width: 100%;
         }
-        .col-item-content{
+
+        .col-item-content {
           margin-bottom: 12px;
         }
       }
     }
-    .search-btns{
+
+    .search-btns {
+
       // margin-left: 16px;
-      button{
+      button {
         margin-right: 5px;
       }
     }

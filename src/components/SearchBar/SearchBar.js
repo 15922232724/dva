@@ -73,14 +73,14 @@ class SearchBar extends React.Component {
   cols = {
     xs: 8,
     md: 6,
-    xl: 4
+    xl: 8
   };
 
   // 内联元素默认宽
   width = {
-    date: 100,
+    date: 300,
     month: 100,
-    'date~': 280,
+    'date~': 300,
     datetime: 140,
     select: 100,
     default: 110,
@@ -91,15 +91,15 @@ class SearchBar extends React.Component {
 
   // 当type为grid时，指定每两个元素的间隔
   rows = {
-    gutter: 8
+    gutter: 10
   };
 
-  resetForm(e) {
+  resetForm (e) {
     this.props.form.resetFields();
     this.searchForm(true);
   }
 
-  searchForm(isReset) {
+  searchForm (isReset) {
     this.props.form.validateFields((errors, values) => {
       if (errors) {
         let errs = [];
@@ -114,7 +114,7 @@ class SearchBar extends React.Component {
     });
   }
 
-  render() {
+  render () {
     const {
       className,
       prefixCls,
@@ -127,6 +127,7 @@ class SearchBar extends React.Component {
       form,
       appendTo,
       record,
+      style,
       ...otherProps
     } = this.props;
 
@@ -139,9 +140,9 @@ class SearchBar extends React.Component {
     const formItemLayout =
       type === 'grid'
         ? {
-            labelCol: { span: 8 },
-            wrapperCol: { span: 16 }
-          }
+          labelCol: { span: 8 },
+          wrapperCol: { span: 16 }
+        }
         : {};
 
     let ComponentBtnGroup = type === 'inline' ? Button.Group : PlainComp;
@@ -149,8 +150,8 @@ class SearchBar extends React.Component {
     let searchFields = columns.filter(col => col.searchItem);
     searchFields = group
       ? searchFields.filter(
-          col => col.searchItem && col.searchItem.group === group
-        )
+        col => col.searchItem && col.searchItem.group === group
+      )
       : searchFields;
 
     if (!searchFields.length) return null;
@@ -264,22 +265,24 @@ class SearchBar extends React.Component {
             })}
             {children}
           </ComponentRow>
-          <ComponentBtnGroup className="search-btns">
-            <Button
-              title="查询"
-              type={type === 'grid' ? 'primary' : 'default'}
-              onClick={e => this.searchForm()}
-              htmlType="submit"
-              icon="search"
-            >
-              查询
+          <ComponentBtnGroup className="search-btns" >
+            <div style={style}>
+              <Button
+                title="查询"
+                type={type === 'grid' ? 'primary' : 'default'}
+                onClick={e => this.searchForm()}
+                htmlType="submit"
+                icon="search"
+              >
+                查询
             </Button>
-            <Button title="重置" onClick={e => this.resetForm()} icon="reload">
-              重置
+              <Button title="重置" onClick={e => this.resetForm()} icon="reload">
+                重置
             </Button>
+            </div>
           </ComponentBtnGroup>
         </Form>
-      </div>
+      </div >
     );
   }
 }

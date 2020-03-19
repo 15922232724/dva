@@ -11,7 +11,7 @@ export default class Events extends React.PureComponent {
 
   render () {
     const renders = config.map((item, index) => {
-      return <div key={index} style={{ width: '700px', height: '400px' }}>
+      return <div key={index} >
         <Chart >{item}</Chart>
       </div>
     })

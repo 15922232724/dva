@@ -17,7 +17,7 @@ class BaseComponent extends React.Component {
   /**
    * history api 路由跳转
    */
-  get history() { 
+  get history () {
     return this.context.router.history;
   }
 
@@ -36,10 +36,7 @@ class BaseComponent extends React.Component {
    * @param {object} 表单记录
    */
   onUpdate = record => {
-    this.setState({
-      record,
-      visible: true
-    });
+    this.handleUpdate(record)
   };
 
   /**
@@ -52,25 +49,25 @@ class BaseComponent extends React.Component {
 
     const content = `您是否要删除这${
       $$.isArray(record) ? record.length : ''
-    }项？`;
+      }项？`;
 
     Modal.confirm({
       title: '注意',
       content,
       onOk: () => {
-        this.handleDelete($$.isArray(record) ? record : [record]);
+        this.handleDelete(record);
       },
-      onCancel() {}
+      onCancel () { }
     });
   };
 
-  handleAdd() {
+  handleAdd () {
     /* 子类重写 */
   }
-  handleUpdate() {
+  handleUpdate () {
     /* 子类重写 */
   }
-  handleDelete(records) {
+  handleDelete (records) {
     /* 子类重写 */
   }
 }

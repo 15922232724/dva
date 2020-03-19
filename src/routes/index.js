@@ -44,6 +44,8 @@ import AccountSettings from './AccountSettings';
 import FrontDemo from './Front/demo';
 import ActiveInfo from './activeInfo'
 import Questionnaire from './Questionnaire'
+import Manage from './management'
+import Writeoff from './writeoff'
 
 /**
  * 主路由配置
@@ -73,8 +75,9 @@ const routesConfig = app => [
     childRoutes: [
       Questionnaire(app),
 
-      ActiveInfo(app)
-
+      ActiveInfo(app),
+      Manage(app),
+      Writeoff(app)
     ]
   },
   {

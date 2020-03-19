@@ -20,16 +20,16 @@ export default modelEnhance({
         icon: 'dashboard',
         path: '/admin/qusetion',
       },
-      // {
-      //   name: '观众管理',
-      //   icon: 'dashboard',
-      //   path: '/admin/manage',
-      // },
-      // {
-      //   name: '观众核销',
-      //   icon: 'dashboard',
-      //   path: '/admin/checked',
-      // },
+      {
+        name: '观众管理',
+        icon: 'dashboard',
+        path: '/admin/manage',
+      },
+      {
+        name: '观众核销',
+        icon: 'dashboard',
+        path: '/admin/writeoff',
+      },
     ],
     flatMenu: [],
     activeInfo: {
