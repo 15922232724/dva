@@ -30,7 +30,7 @@ export default ({
     // initval = record[name];
     initval = _.at(record, name)[0];
   }
-
+  console.log(record)
   // 如果存在初始值
   if (initval !== null && typeof initval !== 'undefined') {
     if ($$.isFunction(normalize)) {

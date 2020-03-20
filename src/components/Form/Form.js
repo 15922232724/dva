@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'dva';
 import { Form, Row, Col, Button, Divider } from 'antd';
 import cx from 'classnames';
 import objectAssign from 'object-assign';
@@ -94,10 +93,9 @@ class FormComp extends React.Component {
     prefixCls: 'antui-form',
     type: 'grid',
     loading: false,
-    footer: false,
     formItemLayout: {
       labelCol: { span: 6 },
-      wrapperCol: { span: 10 }
+      wrapperCol: { span: 12 }
     }
   };
 
@@ -160,8 +158,9 @@ class FormComp extends React.Component {
       footer,
       ...otherProps
     } = this.props;
-    console.log(footer)
+
     delete otherProps.onSubmit;
+    console.log(this.defaultProps, 999)
 
     let classname = cx(prefixCls, className, {
       'form-inline': type === 'inline',
@@ -171,7 +170,6 @@ class FormComp extends React.Component {
 
     const colopts = type === 'grid' ? cols || this.cols : {};
     const rowopts = type === 'grid' ? rows || this.rows : {};
-
     let ComponentRow = type === 'inline' ? PlainComp : Row;
     let ComponentCol = type === 'inline' ? PlainComp : Col;
     let ComponentItem = Form.Item;
@@ -223,7 +221,6 @@ class FormComp extends React.Component {
 
             let formProps = {
               form,
-              dicttypecode: field.dicttypecode,
               name: field.name,
               title: field.title,
               record,
@@ -270,7 +267,7 @@ class FormComp extends React.Component {
               case 'line': // 分隔线
                 const lineProps = omit(formProps, 'type');
                 return (
-                  <Divider className='divider' key={`col-${i}`} {...lineProps}>
+                  <Divider key={`col-${i}`} {...lineProps}>
                     {formProps.title}
                   </Divider>
                 );
@@ -295,8 +292,6 @@ class FormComp extends React.Component {
                 <ComponentItem
                   {...formItemLayout}
                   label={field.title}
-                  // labelCol={{span: 4}}
-                  // labelAlign='right'
                   className="col-item-content"
                 >
                   {FieldComp}
@@ -331,9 +326,4 @@ class FormComp extends React.Component {
 
 export const Item = Form.Item;
 
-export default createForm({
-  onValuesChange (props, changedValues) {
-    props.onSubmit(changedValues)
-  }
-}
-)(FormComp);
+export default createForm()(FormComp);

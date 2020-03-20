@@ -7,54 +7,97 @@ export function tableConfig (that) {
     {
       title: '姓名',
       name: 'name',
-      tableItem: {}
+      tableItem: {},
+      formItem: {
+
+      },
+
     },
     {
       title: '电话',
       name: 'tel',
-      tableItem: {}
+      tableItem: {},
+      formItem: {
+
+      },
+
     },
     {
       title: '称谓',
       name: 'rename',
-      tableItem: {}
+      tableItem: {},
+      formItem: {
+
+      },
+
     },
     {
       title: '职务',
       name: 'zhiwu',
-      tableItem: {}
+      tableItem: {},
+      formItem: {},
+
     },
     {
       title: '公司',
       name: 'gongsi',
-      tableItem: {}
+      tableItem: {},
+      formItem: {},
+
     },
     {
       title: '主营',
       name: 'zhuying',
-      tableItem: {}
+      tableItem: {},
+      formItem: {},
+
     },
     {
-      title: '省份',
-      name: 'shengfen',
-      tableItem: {}
-    },
-    {
-      title: '城市',
-      name: 'city',
-      tableItem: {}
+      title: '地区',
+      name: 'diqu',
+      tableItem: {},
+      formItem: {
+        type: 'cascade',
+        options: [
+          {
+            value: 'zhejiang',
+            label: 'Zhejiang',
+            children: [
+              {
+                value: 'hangzhou',
+                label: 'Hangzhou'
+              }
+            ]
+          },
+          {
+            value: 'jiangsu',
+            label: 'Jiangsu',
+            children: [
+              {
+                value: 'nanjing',
+                label: 'Nanjing'
+              }
+            ]
+          }
+        ]
+      },
     },
     {
       title: '买家团',
       name: 'maijiatuan',
-      tableItem: {}
+      dict: [{ code: '0', codeName: '是' }, { code: '1', codeName: '否' }],
+      tableItem: {},
+      formItem: {
+        type: 'select'
+      },
+
     },
+
     {
       title: '操作',
       tableItem: {
         width: 180,
         render: (text, record) => {
-          console.log(text, record)
           return (
             <DataTable.Oper>
               <Button tooltip="修改" onClick={(e) => that.onUpdate(record)} >
@@ -107,7 +150,7 @@ export function searchConfig () {
     }
   },
   {
-    title: '地理信息',
+    title: '地区',
     name: 'key1',
     searchItem: {
       type: 'cascade',

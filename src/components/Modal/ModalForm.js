@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Button,Spin } from 'antd';
+import { Modal, Button, Spin } from 'antd';
 import Form from '../Form';
 import cx from 'classnames';
 import './style/index.less';
@@ -18,14 +18,14 @@ class ModalForm extends Component {
     className: PropTypes.string
   };
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       visible: this.props.visible
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if ('visible' in nextProps) {
       this.setState({
         visible: nextProps.visible
@@ -54,7 +54,7 @@ class ModalForm extends Component {
     });
   };
 
-  render() {
+  render () {
     const {
       title,
       record,
@@ -104,19 +104,19 @@ class ModalForm extends Component {
       footer: false,
       formItemLayout: {
         labelCol: { span: 4 },
-        wrapperCol: { span: 24 }
+        wrapperCol: { span: 16 }
       },
       ...formOpts
     };
     return (
       <Modal {...modalProps}>
-        {loadingForm?
-        <div className={cx('modal-form-spin')}>
-                  <Spin/>
-        </div>
-        :
-         <Form {...formProps} /> }
-       
+        {loadingForm ?
+          <div className={cx('modal-form-spin')}>
+            <Spin />
+          </div>
+          :
+          <Form {...formProps} />}
+
       </Modal>
     );
   }

@@ -22,16 +22,16 @@ export default ({
   ...otherProps
 }) => {
   const { getFieldDecorator, } = form;
-  if(dicttypecode){
+  if (dicttypecode) {
     dict = $$.getStore('dict');
-    if(dict){
-      dict = _.find(dict,{code:dicttypecode})['dict']
+    if (dict) {
+      dict = _.find(dict, { code: dicttypecode })['dict']
     }
   }
   let initval = initialValue;
 
   if (record) {
-    initval = _.at(record,name)[0];
+    initval = _.at(record, name)[0];
   }
 
   // 如果存在初始值
@@ -76,8 +76,8 @@ export default ({
   return getFieldDecorator(name, formFieldOptions)(
     <Select {...props}>
       {dict.map((dic, i) => (
-        <Select.Option key={dic.code} value={dic.code} title={dic.name}>
-          {dic.name}
+        <Select.Option key={dic.code} value={dic.code} title={dic.codeName}>
+          {dic.codeName}
         </Select.Option>
       ))}
     </Select>

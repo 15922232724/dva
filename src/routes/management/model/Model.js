@@ -33,6 +33,19 @@ export default modelEnhance({
     *getTableList ({ payload }, { call, put, select }) {
       yield call(getTableList, payload)
     },
+    *updateInfo ({ payload }, { call, put, select }) {
+      console.log(payload, 'update')
+      payload.success()
+    },
+    *deleteInfo ({ payload }, { call, put, select }) {
+      console.log(payload, 'delete')
+    },
+    *addInfo ({ payload }, { call, put, select }) {
+      console.log(payload, 'add')
+    },
+    *exportInfo ({ payload }, { call, put, select }) {
+      console.log(payload)
+    }
 
 
 

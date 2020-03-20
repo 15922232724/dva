@@ -70,7 +70,7 @@ class DataTable extends Component {
     alternateColor: true
   };
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       selectedRowKeys: props.selectedRowKeys,
@@ -80,7 +80,7 @@ class DataTable extends Component {
   }
 
   // 将值转成对像数组
-  getSelectedRows(value, oldValue = []) {
+  getSelectedRows (value, oldValue = []) {
     const { rowKey } = this.props;
 
     if (value) {
@@ -88,12 +88,12 @@ class DataTable extends Component {
         const oldv = oldValue.filter(jtem => jtem[rowKey] === item)[0];
         return typeof item === 'object' ? item : oldv || { [rowKey]: item };
       })
-      return result ;
+      return result;
     }
     return [];
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     const { selectedRows } = this.state;
     const newState = {};
     if (!isEqual(this.props.selectedRowKeys, nextProps.selectedRowKeys)) {
@@ -125,14 +125,14 @@ class DataTable extends Component {
   };
 
   onSelectChange = (selectedRowKeys, selectedRows) => {
+
     // 使用keys重新过滤一遍rows以key为准，解决keys与rows不同步问题
     // 并在每一行加一个rowKey字段
-    selectedRows = selectedRows.filter(
-      item => selectedRowKeys.indexOf(item[this._rowKey]) !== -1
-    );
-
+    // selectedRows = selectedRows.filter(
+    //   item => selectedRowKeys.indexOf(item[this._rowKey]) !== -1
+    // );
     this.setState({ selectedRowKeys, selectedRows }, () => {
-      this.props.onSelect && this.props.onSelect(selectedRowKeys, selectedRows);
+      this.props.onSelect && this.props.onSelect(selectedRows);
     });
   };
 
@@ -141,8 +141,8 @@ class DataTable extends Component {
 
     let sortMap = sorter.field
       ? {
-          [sorter.field]: sorter.order === 'ascend' ? 'asc' : 'desc'
-        }
+        [sorter.field]: sorter.order === 'ascend' ? 'asc' : 'desc'
+      }
       : sorter;
     this.props.onChange &&
       this.props.onChange({ pageNum, filters, sorter: sortMap });
@@ -155,54 +155,54 @@ class DataTable extends Component {
    * 改变组织结构
    * @param {} nodes 
    */
-  mapTreeDic(nodes,dictStore){
-    return nodes.map((node)=>{
+  mapTreeDic (nodes, dictStore) {
+    return nodes.map((node) => {
       let children = null
-      if(node.children){
+      if (node.children) {
         children = this.mapTree(node.children)
       }
       return {
-        title:node.name,
-        value:node.id,
-        children:children,
+        title: node.name,
+        value: node.id,
+        children: children,
       }
     })
   }
   /**
    * 处理字典类型数据
    */
-  mapDict(data,cols){
-    if(!data){
+  mapDict (data, cols) {
+    if (!data) {
       return;
     }
-    data.forEach(item=>{
-      if(item.children){
-        this.mapDict(item.children,cols);
+    data.forEach(item => {
+      if (item.children) {
+        this.mapDict(item.children, cols);
       }
-      cols.forEach(dictCode=>{
+      cols.forEach(dictCode => {
         let dict;
         let name;
-        if(dictStore){
-          dict = _.find(dictStore,{code:dictCode.dicttypecode})['dict']
-          name=_.find(dict,{code:`${item[dictCode.name]}`});
-          if(name){
+        if (dictStore) {
+          dict = _.find(dictStore, { code: dictCode.dicttypecode })['dict']
+          name = _.find(dict, { code: `${item[dictCode.name]}` });
+          if (name) {
             name = name.name;
             item[dictCode.name] = name;
           }
         }
       })
     })
-    
+
   }
 
-// /**
-//      * 转换字典类型
-//      */
-//     let dictStore = $$.getStore('dict');
-    
+  // /**
+  //      * 转换字典类型
+  //      */
+  //     let dictStore = $$.getStore('dict');
 
 
-  render() {
+
+  render () {
     const {
       prefixCls,
       className,
@@ -283,7 +283,7 @@ class DataTable extends Component {
         dataIndex: '_rowkey',
         className: 'hide-column',
         width: 0,
-        render(text, record, index) {
+        render (text, record, index) {
           record.rowKey = record[rowKey || colRowKey];
           return <div style={{ display: 'none' }}>{record.rowKey}</div>;
         }
@@ -296,7 +296,7 @@ class DataTable extends Component {
         width: 50,
         dataIndex: '_num',
         ...(hasLeftFixedCol && { fixed: 'left' }),
-        render(text, record, index) {
+        render (text, record, index) {
           const { pageNum, pageSize } = dataItems;
           if (pageNum && pageSize) {
             return (pageNum - 1) * pageSize + index + 1;
@@ -330,9 +330,9 @@ class DataTable extends Component {
     };
 
     this._rowKey = rowKey || colRowKey;
-    let dictCols = columns.filter(item=>item.dicttypecode)
-    
-    this.mapDict(dataItems.list,dictCols);
+    let dictCols = columns.filter(item => item.dicttypecode)
+
+    this.mapDict(dataItems.list, dictCols);
     return (
       <div className={classname}>
         <Table
@@ -341,9 +341,9 @@ class DataTable extends Component {
           onRow={
             selectType
               ? (record, index) => ({
-                  // onClick: _ => this.tableOnRow(record, index)
-                })
-              : () => {}
+                // onClick: _ => this.tableOnRow(record, index)
+              })
+              : () => { }
           }
           scroll={isScroll ? objectAssign({ x: true }, isScroll) : {}}
           bodyStyle={{ overflowX: 'auto' }}

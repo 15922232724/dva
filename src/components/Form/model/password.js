@@ -45,7 +45,7 @@ export default class PasswordForm extends Component {
     callback();
   };
 
-  render() {
+  render () {
     const {
       form,
       name,
@@ -59,7 +59,6 @@ export default class PasswordForm extends Component {
       getPopupContainer,
       ...otherProps
     } = this.props;
-
     const { getFieldDecorator } = form;
 
     // 如果有rules
