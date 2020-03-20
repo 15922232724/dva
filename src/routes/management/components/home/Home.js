@@ -71,7 +71,10 @@ class Login extends BaseComponent {
       dataItems: manage,
       showNum: true,
       selectType: 'checkbox',
-      onSelect: (rows) => this.setState({ rows })
+      onSelect: (rows) => this.setState({ rows }),
+      onChange: ({ pageNum, pageSize }) => {
+        console.log(pageNum, pageSize)
+      },
     }
     const modalFormProps = {
       loading,

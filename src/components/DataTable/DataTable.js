@@ -137,6 +137,7 @@ class DataTable extends Component {
   };
 
   handleTableChange = (pagination, filters, sorter) => {
+    console.log(pagination)
     let pageNum = pagination.current || pagination;
 
     let sortMap = sorter.field
@@ -149,6 +150,7 @@ class DataTable extends Component {
   };
 
   onShowSizeChange = (pageNum, pageSize) => {
+    console.log(pageNum, pageSize)
     this.props.onChange && this.props.onChange({ pageNum, pageSize });
   };
   /**
@@ -321,7 +323,7 @@ class DataTable extends Component {
       dataItems.pageNum && { current: dataItems.pageNum },
       pagination
     );
-
+    console.log(paging)
     const _rowSelection = {
       type: selectType === 'radio' ? 'radio' : 'checkbox',
       selectedRowKeys: this.state.selectedRowKeys,
@@ -386,7 +388,7 @@ export const Paging = ({ dataItems, onChange, ...otherProps }) => {
     showQuickJumper: true,
     showTotal: total => `共 ${total} 条`,
     onShowSizeChange: (pageNum, pageSize) => onChange({ pageNum, pageSize }),
-    onChange: pageNum => onChange({ pageNum }),
+    onChange: pageNum => console.log(pageNum),
     ...otherProps
   };
   return <Pagination {...paging} />;
