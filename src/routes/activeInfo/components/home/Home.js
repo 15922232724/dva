@@ -29,21 +29,33 @@ class Active extends BaseComponent {
   constructor (props) {
     super(props);
   }
-  onSubmit (values) {
-    console.log(values)
+  onSubmit = (values) => {
+    const { dispatch } = this.props;
+    console.log(values, 999)
+    dispatch({
+      type: 'global/activeInfoUpdate',
+      payload: values
+    }
+    )
+  }
+  timeChange = (value) => {
+    console.log(value, 999)
   }
   componentDidMount () {
     const { dispatch } = this.props;
   }
-
   render () {
     const { activeInfo } = this.props
+    const column = columns(this)
+
     console.log(activeInfo)
+    const record = {
+      state: 1
+    }
     return (
       <Layout className="full-layout home-page" >
         <div style={{ marginTop: '50px' }}>
-          <Form type="grid" columns={columns} onSubmit={this.onSubmit} >
-
+          <Form type="grid" columns={column} onSubmit={this.onSubmit} record={record}>
           </Form>
         </div>
       </Layout>

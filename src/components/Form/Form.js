@@ -130,8 +130,11 @@ class FormComp extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
+    console.log(777)
     const { form, record, onSubmit } = this.props;
+    console.log(form)
     form.validateFields((err, values) => {
+      console.log(err, values)
       if (!err) {
         onSubmit && onSubmit(values, record);
       }
@@ -160,7 +163,6 @@ class FormComp extends React.Component {
     } = this.props;
 
     delete otherProps.onSubmit;
-    console.log(this.defaultProps, 999)
 
     let classname = cx(prefixCls, className, {
       'form-inline': type === 'inline',

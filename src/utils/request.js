@@ -9,7 +9,7 @@ function getLocalToken () {
     const token = $$.getStore("token")
     return token
 }
-let getNet = function(){
+let getNet = function () {
     const instance = axios.create({
         baseURL: '/api',
         timeout: 3000,
@@ -46,7 +46,7 @@ let getNet = function(){
 }
 let Net = getNet();
 
-export function rest(){
+export function rest () {
     Net = getNet();
-}  
-export {Net};
+}
+export { Net };

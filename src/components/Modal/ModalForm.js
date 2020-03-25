@@ -108,6 +108,7 @@ class ModalForm extends Component {
       },
       ...formOpts
     };
+    console.log(record)
     return (
       <Modal {...modalProps}>
         {loadingForm ?

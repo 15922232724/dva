@@ -62,8 +62,8 @@ export default class BasicLayout extends React.PureComponent {
 
   componentDidMount () {
     // 检查有户是否登录
-    const user = $$.getStore('user');
-    if (!user) {
+    const token = $$.getStore('token');
+    if (!token) {
       this.props.dispatch(routerRedux.replace('/'));
     }
     const color = '#1890ff';

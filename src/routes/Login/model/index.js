@@ -24,19 +24,11 @@ export default {
 
   effects: {
     *login ({ payload }, { call, put }) {
-      console.log(1)
-      yield put(routerRedux.replace('/admin'));
-      yield $$.setStore('user', '133');
-
-      // const { id_token, message } = yield call(login, payload);
-      // if (id_token) {
-      //   yield $$.setStore('token', id_token);
-
-      // } else {
-      //   yield put({
-      //     type: 'loginError'
-      //   });
-      // }
+      let { id_token } = yield call(login, payload);
+      if (id_token) {
+        yield $$.setStore('token', id_token);
+        yield put(routerRedux.replace('/admin'));
+      }
     },
     *logout (_, { put }) { }
   },
