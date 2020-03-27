@@ -1,31 +1,85 @@
-export default [{
-  title: '某1站点用户访问来源',
-  data: [
-    { count: 3325, item: '直接访问' },
-    { count: 3120, item: '邮件营销' },
-    { count: 2234, item: '联盟广告' },
-    { count: 1352, item: '视频广告' },
-    { count: 1548, item: '搜索引擎' }
-  ],
-},
-{
-  title: '某2站点用户访问来源',
-  data: [
-    { count: 335, item: '直接访问' },
-    { count: 310, item: '邮件营销' },
-    { count: 234, item: '联盟广告' },
-    { count: 135, item: '视频广告' },
-    { count: 1548, item: '搜索引擎' }
-  ],
-},
-{
-  title: '某3站点用户访问来源',
-  data: [
-    { count: 3325, item: '直接访问' },
-    { count: 310, item: '邮件营销' },
-    { count: 2314, item: '联盟广告' },
-    { count: 1135, item: '视频广告' },
-    { count: 1548, item: '搜索引擎' }
-  ],
-},
-]
+import React, { Fragment } from 'react';
+import DataTable, { EditableOper } from 'components/DataTable';
+import Icon from 'components/Icon';
+import { Button } from 'antd';
+export function tableConfig (that) {
+  return [
+    {
+      title: '姓名',
+      name: 'name',
+      tableItem: {},
+      formItem: {
+
+      },
+
+    },
+    {
+      title: '电话',
+      name: 'tel',
+      tableItem: {},
+      formItem: {
+      }
+    }, {
+      title: '称谓',
+      name: 'tel',
+      tableItem: {},
+      formItem: {
+
+      }
+    }, {
+      title: '邮箱',
+      name: 'tel',
+      tableItem: {},
+      formItem: {
+
+      }
+    }, {
+      title: '职务',
+      name: 'tel',
+      tableItem: {},
+      formItem: {
+
+      }
+    },
+    {
+      title: '公司',
+      name: 'tel',
+      tableItem: {},
+      formItem: {
+
+      }
+    },
+    {
+      title: '主营',
+      name: 'tel',
+      tableItem: {},
+      formItem: {
+
+      }
+    },
+    {
+      title: '地区',
+      name: 'tel',
+      tableItem: {},
+      formItem: {
+
+      }
+    },
+    {
+      title: '买家团',
+      name: 'tel',
+      tableItem: {},
+      formItem: {
+
+      }
+    }, {
+      title: 'id',
+      name: 'id',
+      searchItem: {},
+
+    }
+
+
+
+  ];
+}
