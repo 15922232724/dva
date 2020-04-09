@@ -1,6 +1,6 @@
 #!/bin/bash
-IMG_MANGER="registry.cn-beijing.aliyuncs.com/xsd" #私有镜像地址
-PROJECT_NAME="traslate-s1-web"
+IMG_MANGER="registry.cn-hangzhou.aliyuncs.com/security_expo" #私有镜像地址
+PROJECT_NAME="web_pc"
 PROJECT_VERSION="1.1"
 sudo rm -rf build/
 sudo yarn run build
